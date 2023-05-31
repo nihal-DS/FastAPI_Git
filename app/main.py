@@ -1,9 +1,10 @@
 from fastapi import FastAPI, Depends
 from fastapi.params import Body
-from app import models
+from . import models
 from .database import engine, get_db
 from sqlalchemy.orm import Session
 from .routers import post, user, auth, vote
+# import routers
 from fastapi.middleware.cors import CORSMiddleware
 
 #Used to create models
@@ -41,8 +42,7 @@ app.include_router(vote.router)
 # First GET request
 @app.get("/")
 def send():
-    print('First_API')
-    return 'Hello World'
+    return {'message': 'Hello World'}
 
 # Sqlalchemy GET test
 @app.get("/sqlalchemy")
